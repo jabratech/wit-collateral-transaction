@@ -1,0 +1,5 @@
+package jabratech:collateral-transaction-common;
+
+world collateral-transaction {
+    export collateral-transaction-handler;
+}

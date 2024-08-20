@@ -1,0 +1,125 @@
+interface types {
+    use jabratech:common/types.{currency, counterparty, user};
+
+    record collateral-transaction-response{
+        code: s16,
+        message: string,
+        data: list<collateral-transaction>
+    }
+
+    record collateral-transaction{
+        id: s64,
+        user-created: user,
+        date-created: string,
+        user-updated: option<user>,
+        date-updated: option<string>,
+        transaction-type: string,
+        currency: currency,
+        amount: f64,
+        reference: string,
+        from-wallet: wallet,
+        to-wallet: wallet,
+        txn-hash: string,
+        fee-amount: f64,
+        venue-transaction-datetime: string,
+        description: string,
+        source-counterparty: counterparty,
+        destination-counterparty: counterparty,
+        usd-value: f64,
+        is-submitted: bool, 
+        exchange-rate: f64,
+    }
+
+    record wallet{
+        id: s8,
+        date-created: string,
+        date-updated: option<string>,
+        name: string,
+        address: string,
+        network: network, 
+        counterparty: counterparty,
+        currency: currency,
+    }
+
+    record network{
+        id: s8,
+        date-created: string,
+        date-updated: option<string>,
+        name: string,
+        description: option<string>,
+        chain-id: s8,
+        symbol: string 
+    }
+
+    record collateral-transaction-request{
+        id: s8,
+        transaction-type: string,
+        currency: s8,
+        amount: f64,
+        reference: string,
+        from-wallet: s8,
+        to-wallet: s8,
+        txn-hash: string,
+        fee-amount: f64,
+        venue-transaction-datetime: string,
+        description: string,
+        source-counterparty: s8,
+        destination-counterparty: s8,
+        usd-value: f64,
+        is-submitted: bool, 
+        exchange-rate: f64,
+    }
+
+    record collateral-transaction-create-request{
+        transaction-type: string,
+        currency: s8,
+        amount: f64,
+        reference: string,
+        from-wallet: s8,
+        to-wallet: s8,
+        txn-hash: string,
+        fee-amount: f64,
+        venue-transaction-datetime: string,
+        description: string,
+        source-counterparty: s8,
+        destination-counterparty: s8,
+        usd-value: f64,
+        is-submitted: bool, 
+        exchange-rate: f64,
+    }
+
+    record create-request{
+        user-email: string,
+        collateral-transaction: list<collateral-transaction-create-request>
+    }
+
+    record collateral-transaction-update-request{
+        id: option<s64>,
+        transaction-type: string,
+        currency: s8,
+        amount: f64,
+        reference: option<string>,
+        from-wallet: s8,
+        to-wallet: s8,
+        txn-hash: string,
+        fee-amount: f64,
+        venue-transaction-datetime: string,
+        description: string,
+        source-counterparty: s8,
+        destination-counterparty: s8,
+        usd-value: f64,
+        is-submitted: bool, 
+        exchange-rate: f64,
+    }
+
+    record update-request{
+        user-email: string,
+        collateral-transaction: list<collateral-transaction-update-request>
+    }
+
+    record delete-request{
+        user-email: string,
+        id: option<list<s64>>,
+        reference: option<list<string>>,
+    }
+}
