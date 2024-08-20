@@ -3,7 +3,7 @@ interface collateral-transaction-handler {
   use types.{collateral-transaction-response,create-request,update-request,delete-request};
 
   get:  func(source-counterparty-ticker: option<list<string>>,destination-counterparty-ticker: option<list<string>>) -> result<collateral-transaction-response, response>;
-  create: func(request: create-request)-> result<response, response>;
-  update: func(request: update-request)-> result<response, response>;
-  delete: func(request: delete-request)-> result<response, response>;
+  create: func(request: create-request)-> result<bool, response>;
+  update: func(request: update-request)-> result<bool, response>;
+  delete: func(request: delete-request)-> result<bool, response>;
 }
